@@ -56,7 +56,8 @@ After the prerequisites are installed:
 	```
 
 	```sql
-	CREATE USER 'rrc_user' IDENTIFIED BY 'rrc_password';
+	CREATE USER 'rrc_user' IDENTIFIED WITH mysql_native_password BY 'rrc_password';
+
 	GRANT ALL PRIVILEGES ON tag.* TO 'rrc_user'; 
 	```
 
