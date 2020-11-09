@@ -5,6 +5,6 @@ RUN npm install --global bower
 RUN npm install --global grunt-cli
 COPY . .
 RUN ["npm", "install"]
-RUN ["bower", "install"]
-EXPOSE 8005
+RUN ["bower", "install", "--allow-root"]
+EXPOSE 9000
 CMD ["grunt", "serve"]
