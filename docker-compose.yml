@@ -1,43 +1,15 @@
-version: "3.2"
+version: "3"
 services: 
-  nodejs:
-    build:
-      context: .
-    image: ra_risk_coverage
-    depends_on:
-      - mysql
-    networks:
-      - client
-      - server
-    environment:
-      - MYSQL_HOST=localhost
-      - MYSQL_USER=joe
-      - MYSQL_PASS=strong_password
-      - MYSQL_DB=tag
+  web:
+    build: .
     ports:
-      - "7769:9000"
-    container_name: ra-risk-node
+      - 9000:9000
+    # volumes:
+    #   - ./client:/src/client
+    #   - ./server:/src/server
+    #   - ./static:/src/static
+
   mysql:
-    image: mysql:5.7.21
-    networks: 
-      - server
-    environment: 
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=joe
-      - MYSQL_PASS=strong_password
-      - MYSQL_DB=tag
-    container_name: ra-risk-mysql
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
-    depends_on:
-      - mysql
-    networks:
-      - server
+    build: server/db
     ports:
-      - "7770:80"
-    environment:
-      - PMA_HOST=ra-risk-mysql
-      - PMA_PORT=3306
-networks:
-  client:
-  server:
+      - 3306:3306
