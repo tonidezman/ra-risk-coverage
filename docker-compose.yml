@@ -10,13 +10,15 @@ services:
       - client
       - server
     environment:
-      - MYSQL_HOST=localhost
+      - MYSQL_HOST=ra-risk-mysql
       - MYSQL_USER=joe
       - MYSQL_PASS=strong_password
       - MYSQL_DB=tag
     ports:
       - "7769:9000"
     container_name: ra-risk-node
+    volumes:
+      - "./server:/usr/src/app/server"
   mysql:
     image: mysql:5.7.21
     networks: 
